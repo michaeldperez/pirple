@@ -1,13 +1,11 @@
 from fb import *
+import pytest
 
-def test_multiple_of_three():
-    assert fb(6) == "Fizz"
-
-def test_multiple_of_five():
-    assert fb(55) == "Buzz"
-
-def test_multiple_of_three_and_five():
-    assert fb(90) == "FizzBuzz"
-
-def test_not_a_multiple_of_three_or_five():
-    assert fb(62) == 62
+@pytest.mark.parametrize("input, expected", [
+    (6, "Fizz"),
+    (55, "Buzz"),
+    (90, "FizzBuzz"),
+    (62, 62)
+])
+def test_fizzbuzz(input, expected):
+    assert fb(input) == expected
