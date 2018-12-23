@@ -13,5 +13,4 @@ def playing_board(rows, columns):
                     print("|", end = "")
         else:
             print("-" * (col_range - 1))
-
-playing_board(3,4)
+    return True
