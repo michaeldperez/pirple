@@ -12,7 +12,7 @@ import pytest
     ("DurationInSeconds", 247, True),
     ("DurationInMinutes", 4.57, True),
     ("Label", "Confession", False),
-    ("NonExistantKey", "NonExistantValue", False)
+    ("NonExistentKey", "NonExistentValue", False)
 ])
 def test_keyguess(key, value, expected):
     assert keyguess(key, value) == expected
