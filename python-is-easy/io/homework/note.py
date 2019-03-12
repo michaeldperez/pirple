@@ -1,4 +1,4 @@
-import os, re
+import os
 
 def take_note(file, prompt='Please enter your note: '):
     text = input(prompt)
