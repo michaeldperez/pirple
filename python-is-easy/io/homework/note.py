@@ -36,8 +36,6 @@ def replace_line(filename):
         file.writelines(lines)
         file.close()
 
-
-
 def note_taker():
     print('Welcome to Note Taker.')
     name = input("Please enter a file name: ")
