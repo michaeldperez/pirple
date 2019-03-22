@@ -22,7 +22,8 @@ def able_to_move(column):
 def move(board, column, icon):
     column_selected = board[column - 1]
     if able_to_move(column_selected):
-        column_selected
+        column_selected.append(icon)
+        return True
     else:
-        print('Invalid move. Please select again.')
+        return False
 
