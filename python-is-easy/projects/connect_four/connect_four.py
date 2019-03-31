@@ -1,11 +1,11 @@
 BOARD = [
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    []
+    [' ', ' ', ' ', ' ', ' ', ' ', ' '], # row 1
+    [' ', ' ', ' ', ' ', ' ', ' ', ' '], # row 2
+    [' ', ' ', ' ', ' ', ' ', ' ', ' '], # row 3
+    [' ', ' ', ' ', ' ', ' ', ' ', ' '], # row 4
+    [' ', ' ', ' ', ' ', ' ', ' ', ' '], # row 5
+    [' ', ' ', ' ', ' ', ' ', ' ', ' '], # row 6
+    [' ', ' ', ' ', ' ', ' ', ' ', ' ']  # row 7
 ]
 
 CURRENT_PLAYER = 1
@@ -27,3 +27,13 @@ def move(board, column, icon):
     else:
         return False
 
+def draw_board(board):
+  for row in range(6):
+    for column in range(7):
+      if column < 6:
+        if column == 0:
+          print('|{} |'.format(board[row][column]), end='')
+        else:
+          print(' {} |'.format(board[row][column]), end='')
+      else:
+        print(' {} |'.format(board[row][column]), end='\n')
