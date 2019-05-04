@@ -16,12 +16,19 @@ def toggle_player(current_player):
 def player_icon(current_player):
     return ('O', 'X')[current_player == 1]
 
-def able_to_move(column):
-    return len(column) < 6
+def lenth_of_column(board, column):
+    count = 0
+    for row in board:
+        if row[column] != ' ':
+            count += 1
+    return count
+
+def able_to_move(board, column):
+    return lenth_of_column(board, column) < 7
 
 def move(board, column, icon):
     column_selected = board[column - 1]
-    if able_to_move(column_selected):
+    if able_to_move(board, column_selected):
         column_selected.append(icon)
         return True
     else:
