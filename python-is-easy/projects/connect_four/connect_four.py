@@ -35,12 +35,12 @@ def move(board, column, icon):
         return False
 
 def draw_board(board):
-  for row in range(6):
-    for column in range(7):
-      if column < 6:
-        if column == 0:
-          print('|{} |'.format(board[row][column]), end='')
-        else:
-          print(' {} |'.format(board[row][column]), end='')
-      else:
-        print(' {} |'.format(board[row][column]), end='\n')
+    for row in range(6):
+        for column in range(7):
+            if column < 6:
+                if column == 0:
+                    print('|{} |'.format(board[row][column]), end='')
+                else:
+                    print(' {} |'.format(board[row][column]), end='')
+            else:
+                print(' {} |'.format(board[row][column]), end='\n')
