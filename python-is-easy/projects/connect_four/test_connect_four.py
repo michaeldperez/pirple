@@ -1,17 +1,17 @@
 import unittest
 
-from connect_four import toggle_player, player_icon, able_to_move
+from connect_four import toggle_player, player_icon, able_to_move, check_column
 
 class TestConnectFour(unittest.TestCase):
     def setUp(self):
         self.board = [
-            [' ', ' ', ' ', ' ', 'X', ' ', ' '],
-            [' ', ' ', ' ', ' ', 'O', ' ', ' '],
-            [' ', ' ', ' ', ' ', 'X', ' ', ' '],
-            [' ', ' ', ' ', ' ', 'O', ' ', ' '],
-            [' ', 'O', ' ', ' ', 'X', ' ', ' '],
-            [' ', 'X', ' ', ' ', 'O', ' ', ' '],
-            [' ', 'X', ' ', ' ', 'X', ' ', ' ']
+            [' ', ' ', ' ', ' ', 'X', ' ', 'O'],
+            [' ', ' ', ' ', ' ', 'O', ' ', 'X'],
+            [' ', ' ', ' ', ' ', 'X', ' ', 'O'],
+            [' ', ' ', 'X', ' ', 'O', ' ', 'O'],
+            [' ', 'O', 'X', ' ', 'X', ' ', 'O'],
+            [' ', 'X', 'X', ' ', 'O', ' ', 'X'],
+            [' ', 'X', 'X', ' ', 'X', ' ', 'X']
         ]
     def tearDown(self):
         pass
@@ -33,6 +33,12 @@ class TestConnectFour(unittest.TestCase):
     
     def test_not_able_to_move(self):
         self.assertFalse(able_to_move(self.board, 4))
+    
+    def test_check_column_not_win(self):
+        self.assertFalse(check_column(self.board, 6, 'O'))
+    
+    def test_check_column_win(self):
+        self.assertTrue(check_column(self.board, 2, 'X'))
 
 if __name__ == '__main__':
     unittest.main()
