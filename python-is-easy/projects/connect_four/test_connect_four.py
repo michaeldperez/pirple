@@ -1,7 +1,6 @@
 import unittest
-
-#from connect_four import toggle_player, player_icon, able_to_move, check_column
 import connect_four as cf
+
 class TestConnectFour(unittest.TestCase):
     def setUp(self):
         self.board = [
