@@ -10,8 +10,8 @@ class TestConnectFour(unittest.TestCase):
             [' ', ' ', ' ', ' ', 'X', ' ', 'O'],
             [' ', ' ', 'X', ' ', 'O', ' ', 'O'],
             [' ', 'O', 'X', ' ', 'X', ' ', 'O'],
-            [' ', 'X', 'X', ' ', 'O', ' ', 'X'],
-            [' ', 'X', 'X', ' ', 'X', ' ', 'X']
+            ['X', 'X', 'X', 'X', 'O', ' ', 'X'],
+            ['X', 'X', 'X', 'O', 'X', 'O', 'X']
         ]
     def tearDown(self):
         pass
@@ -39,6 +39,12 @@ class TestConnectFour(unittest.TestCase):
     
     def test_check_column_win(self):
         self.assertTrue(cf.check_column(self.board, 2, 'X'))
+    
+    def test_check_row_not_win(self):
+        self.assertFalse(cf.check_row(self.board, 6, 'X'))
+    
+    def test_check_row_win(self):
+        self.assertTrue(cf.check_row(self.board, 5, 'X'))
 
 if __name__ == '__main__':
     unittest.main()
