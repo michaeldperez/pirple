@@ -54,4 +54,4 @@ def check_column(board, column, icon):
             count = 0
         elif count == 4:
             return True
-    return False
+    return (False, True)[count == 4]
