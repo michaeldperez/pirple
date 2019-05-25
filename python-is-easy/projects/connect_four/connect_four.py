@@ -54,7 +54,7 @@ def check_column(board, column, icon):
                 return True
         else:
             count = 0
-    return (False, True)[count == 4]
+    return False
 
 def check_row(board, row, icon):
     count = 0
@@ -65,4 +65,4 @@ def check_row(board, row, icon):
                 return True
         else:
             count = 0
-    return (False, True)[count == 4]
+    return False
