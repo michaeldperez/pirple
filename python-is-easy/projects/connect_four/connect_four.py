@@ -50,8 +50,19 @@ def check_column(board, column, icon):
     for row in range(7):
         if board[row][column] == icon:
             count += 1
-        elif count > 0:
+            if count == 4:
+                return True
+        else:
             count = 0
-        elif count == 4:
-            return True
+    return (False, True)[count == 4]
+
+def check_row(board, row, icon):
+    count = 0
+    for column in range(7):
+        if board[row][column] == icon:
+            count += 1
+            if count == 4:
+                return True
+        else:
+            count = 0
     return (False, True)[count == 4]
