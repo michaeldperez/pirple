@@ -44,3 +44,14 @@ def draw_board(board):
                     print(' {} |'.format(board[row][column]), end='')
             else:
                 print(' {} |'.format(board[row][column]), end='\n')
+
+def check_column(board, column, icon):
+    count = 0
+    for row in range(7):
+        if board[row][column] == icon:
+            count += 1
+        elif count > 0:
+            count = 0
+        elif count == 4:
+            return True
+    return False
