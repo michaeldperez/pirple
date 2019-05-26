@@ -44,6 +44,18 @@ class TestConnectFour(unittest.TestCase):
     
     def test_check_row_win(self):
         self.assertTrue(cf.check_row(self.board, 5, 'X'))
+    
+    def test_check_vertically_true(self):
+        self.assertTrue(cf.check_vertically(self.board, 'X'))
+    
+    def test_check_vertically_false(self):
+        self.assertFalse(cf.check_vertically(self.board, 'O'))
+    
+    def test_check_horizontally_true(self):
+        self.assertTrue(cf.check_horizontally(self.board, 'X'))
+    
+    def test_check_horizontally_false(self):
+        self.assertFalse(cf.check_horizontally(self.board, 'O'))
 
 if __name__ == '__main__':
     unittest.main()
