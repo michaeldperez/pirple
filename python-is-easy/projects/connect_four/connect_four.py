@@ -66,3 +66,9 @@ def check_row(board, row, icon):
         else:
             count = 0
     return False
+
+def check_vertically(board, icon):
+    return True in [check_column(board, column, icon) for column in range(7)]
+
+def check_horizontally(board, icon):
+    return True in [check_row(board, row, icon) for row in range(7)]
