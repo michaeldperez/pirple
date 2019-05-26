@@ -56,6 +56,18 @@ class TestConnectFour(unittest.TestCase):
     
     def test_check_all_rows_false(self):
         self.assertFalse(cf.check_all(self.board, 'O', cf.check_row))
+    
+    def test_check_in_bounds_top_left(self):
+        self.assertTrue(cf.check_in_bounds(0, 0))
+    
+    def test_check_in_bounds_bottom_right(self):
+        self.assertTrue(cf.check_in_bounds(6, 6))
+    
+    def test_check_out_bounds_row(self):
+        self.assertFalse(cf.check_in_bounds(7, 6))
+    
+    def test_check_out_bounds_column(self):
+        self.assertFalse(cf.check_in_bounds(4, 8))
 
 if __name__ == '__main__':
     unittest.main()
