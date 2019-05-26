@@ -7,8 +7,8 @@ class TestConnectFour(unittest.TestCase):
             [' ', ' ', ' ', ' ', 'X', ' ', 'O'],
             [' ', ' ', ' ', ' ', 'O', ' ', 'X'],
             [' ', ' ', ' ', ' ', 'X', ' ', 'O'],
-            [' ', ' ', 'X', ' ', 'O', ' ', 'O'],
-            [' ', 'O', 'X', ' ', 'X', ' ', 'O'],
+            [' ', ' ', 'X', 'X', 'O', ' ', 'O'],
+            [' ', 'O', 'X', 'O', 'X', ' ', 'O'],
             ['X', 'X', 'X', 'X', 'O', ' ', 'X'],
             ['X', 'X', 'X', 'O', 'X', 'O', 'X']
         ]
@@ -68,6 +68,12 @@ class TestConnectFour(unittest.TestCase):
     
     def test_check_out_bounds_column(self):
         self.assertFalse(cf.check_in_bounds(4, 8))
+
+    def test_check_diag_true(self):
+        self.assertTrue(cf.check_diag(self.board, 4, 2, 'X'))
+    
+    def test_check_diag_false(self):
+        self.assertFalse(cf.check_diag(self.board, 4, 3, 'O'))
 
 if __name__ == '__main__':
     unittest.main()
