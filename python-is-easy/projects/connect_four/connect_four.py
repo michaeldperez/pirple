@@ -69,3 +69,6 @@ def check_row(board, row, icon):
 
 def check_all(board, icon, position_function):
     return True in [position_function(board, position, icon) for position in range(7)]
+
+def check_in_bounds(row, column):
+  return row >= 0 and row < 7 and column >= 0 and column < 7
