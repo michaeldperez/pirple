@@ -71,4 +71,31 @@ def check_all(board, icon, position_function):
     return True in [position_function(board, position, icon) for position in range(7)]
 
 def check_in_bounds(row, column):
-  return row >= 0 and row < 7 and column >= 0 and column < 7
+    return row >= 0 and row < 7 and column >= 0 and column < 7
+
+def check_diag(board, row, column, icon):
+    count = 1
+    for i in range(1,3):
+        if check_in_bounds(row - i, column - 1):
+            if board[row - i][column - i] == icon:
+                count += 1
+                if count == 4:
+                    return True
+        if check_in_bounds(row + i, column + i):
+            if board[row + i][column + i] == icon:
+                count += 1
+                if count == 4:
+                    return True
+    count = 1
+    for i in range(1, 3):
+        if check_in_bounds(row - i, column + i):
+            if board[row - i][column + i] == icon:
+                count += 1
+                if count == 4:
+                    return True
+        if check_in_bounds(row + i, column - i):
+            if board[row + i][column - i] == icon:
+                count += 1
+                if count == 4:
+                    return True
+    return False
