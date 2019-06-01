@@ -5,7 +5,6 @@ BOARD = [
     [' ', ' ', ' ', ' ', ' ', ' ', ' '], # row 4
     [' ', ' ', ' ', ' ', ' ', ' ', ' '], # row 5
     [' ', ' ', ' ', ' ', ' ', ' ', ' '], # row 6
-    [' ', ' ', ' ', ' ', ' ', ' ', ' ']  # row 7
 ]
 
 CURRENT_PLAYER = 1
@@ -24,7 +23,7 @@ def lenth_of_column(board, column):
     return count
 
 def able_to_move(board, column):
-    return lenth_of_column(board, column) < 7
+    return lenth_of_column(board, column) < 6
 
 def move(board, column, icon):
     column_selected = board[column - 1]
@@ -47,7 +46,7 @@ def draw_board(board):
 
 def check_column(board, column, icon):
     count = 0
-    for row in range(7):
+    for row in range(6):
         if board[row][column] == icon:
             count += 1
             if count == 4:
@@ -68,10 +67,11 @@ def check_row(board, row, icon):
     return False
 
 def check_all(board, icon, position_function):
-    return True in [position_function(board, position, icon) for position in range(7)]
+    bounds = (7, 6)[position_function == check_row]
+    return True in [position_function(board, position, icon) for position in range(bounds)]
 
 def check_in_bounds(row, column):
-    return row >= 0 and row < 7 and column >= 0 and column < 7
+    return row >= 0 and row < 6 and column >= 0 and column < 7
 
 def check_diag(board, row, column, icon):
     count = 1
