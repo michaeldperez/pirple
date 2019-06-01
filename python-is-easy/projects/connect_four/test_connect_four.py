@@ -6,11 +6,10 @@ class TestConnectFour(unittest.TestCase):
         self.board = [
             [' ', ' ', ' ', ' ', 'X', ' ', 'O'],
             [' ', ' ', ' ', ' ', 'O', ' ', 'X'],
-            [' ', ' ', ' ', ' ', 'X', ' ', 'O'],
+            [' ', ' ', 'X', ' ', 'X', ' ', 'O'],
             [' ', ' ', 'X', 'X', 'O', ' ', 'O'],
             [' ', 'O', 'X', 'O', 'X', ' ', 'O'],
-            ['X', 'X', 'X', 'X', 'O', ' ', 'X'],
-            ['X', 'X', 'X', 'O', 'X', 'O', 'X']
+            ['X', 'X', 'X', 'X', 'X', 'O', 'X']
         ]
     def tearDown(self):
         pass
@@ -40,7 +39,7 @@ class TestConnectFour(unittest.TestCase):
         self.assertTrue(cf.check_column(self.board, 2, 'X'))
     
     def test_check_row_not_win(self):
-        self.assertFalse(cf.check_row(self.board, 6, 'X'))
+        self.assertFalse(cf.check_row(self.board, 4, 'X'))
     
     def test_check_row_win(self):
         self.assertTrue(cf.check_row(self.board, 5, 'X'))
@@ -61,7 +60,7 @@ class TestConnectFour(unittest.TestCase):
         self.assertTrue(cf.check_in_bounds(0, 0))
     
     def test_check_in_bounds_bottom_right(self):
-        self.assertTrue(cf.check_in_bounds(6, 6))
+        self.assertTrue(cf.check_in_bounds(5, 6))
     
     def test_check_out_bounds_row(self):
         self.assertFalse(cf.check_in_bounds(7, 6))
