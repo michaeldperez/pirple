@@ -69,10 +69,10 @@ class TestConnectFour(unittest.TestCase):
         self.assertFalse(cf.check_in_bounds(4, 8))
 
     def test_check_diag_true(self):
-        self.assertTrue(cf.check_diag(self.board, 4, 2, 'X'))
+        self.assertTrue(cf.check_diags(self.board, 'X'))
     
     def test_check_diag_false(self):
-        self.assertFalse(cf.check_diag(self.board, 4, 3, 'O'))
+        self.assertFalse(cf.check_diags(self.board, 'O'))
 
 if __name__ == '__main__':
     unittest.main()
