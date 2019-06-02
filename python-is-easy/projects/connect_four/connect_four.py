@@ -73,29 +73,31 @@ def check_all(board, icon, position_function):
 def check_in_bounds(row, column):
     return row >= 0 and row < 6 and column >= 0 and column < 7
 
-def check_diag(board, row, column, icon):
-    count = 1
-    for i in range(1,3):
-        if check_in_bounds(row - i, column - 1):
-            if board[row - i][column - i] == icon:
-                count += 1
-                if count == 4:
-                    return True
-        if check_in_bounds(row + i, column + i):
-            if board[row + i][column + i] == icon:
-                count += 1
-                if count == 4:
-                    return True
-    count = 1
-    for i in range(1, 3):
-        if check_in_bounds(row - i, column + i):
-            if board[row - i][column + i] == icon:
-                count += 1
-                if count == 4:
-                    return True
-        if check_in_bounds(row + i, column - i):
-            if board[row + i][column - i] == icon:
-                count += 1
-                if count == 4:
-                    return True
+def check_diags(board, icon):
+    for row in range(6):
+        for column in range(7):
+            count = 1
+            for i in range(1,3):
+                if check_in_bounds(row - i, column - 1):
+                    if board[row - i][column - i] == icon:
+                        count += 1
+                        if count == 4:
+                            return True
+                if check_in_bounds(row + i, column + i):
+                    if board[row + i][column + i] == icon:
+                        count += 1
+                        if count == 4:
+                            return True
+            count = 1
+            for i in range(1, 3):
+                if check_in_bounds(row - i, column + i):
+                    if board[row - i][column + i] == icon:
+                        count += 1
+                        if count == 4:
+                            return True
+                if check_in_bounds(row + i, column - i):
+                    if board[row + i][column - i] == icon:
+                        count += 1
+                        if count == 4:
+                            return True
     return False
