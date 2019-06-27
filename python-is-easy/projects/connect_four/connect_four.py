@@ -33,6 +33,9 @@ def move(board, column, icon):
     else:
         return False
 
+def get_move(current_player):
+    return input('Player {} please select a column'.format(current_player))
+
 def draw_board(board):
     for row in range(6):
         for column in range(7):
@@ -101,3 +104,29 @@ def check_diags(board, icon):
                         if count == 4:
                             return True
     return False
+
+def check_win(board, icon, *position_functions):
+    win = check_diags(BOARD, icon)
+    if not win:
+        for position_function in position_functions:
+            if check_all(BOARD, icon, position_function):
+                win = True
+                break
+    return win
+    
+def play():
+    win = False
+    while not win:
+        draw_board(BOARD)
+        icon = player_icon(CURRENT_PLAYER)
+        potential_move = get_move(CURRENT_PLAYER)
+        valid_move = move(BOARD, potential_move, icon)
+        if valid_move:
+            win = check_win(BOARD, icon, check_row, check_column)
+        else:
+            pass
+        if win:
+            draw_board(BOARD)
+            print('Player {} wins!'.format(CURRENT_PLAYER))
+        else:
+            CURRENT_PLAYER = toggle_player(CURRENT_PLAYER)
