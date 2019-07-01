@@ -25,16 +25,22 @@ def lenth_of_column(board, column):
 def able_to_move(board, column):
     return lenth_of_column(board, column) < 6
 
+def place_token(board, column, icon):
+    for row in board[::-1]:
+        if row[column] == ' ':
+            row[column] = icon
+            break
+
 def move(board, column, icon):
-    column_selected = board[column - 1]
+    column_selected = column - 1
     if able_to_move(board, column_selected):
-        column_selected.append(icon)
+        place_token(board, column_selected, icon)
         return True
     else:
         return False
 
 def get_move(current_player):
-    return input('Player {} please select a column'.format(current_player))
+    return int(input('Player {} please select a column: '.format(current_player)))
 
 def draw_board(board):
     for row in range(6):
@@ -114,19 +120,22 @@ def check_win(board, icon, *position_functions):
                 break
     return win
     
-def play():
+def play(board, current_player):
     win = False
     while not win:
-        draw_board(BOARD)
-        icon = player_icon(CURRENT_PLAYER)
-        potential_move = get_move(CURRENT_PLAYER)
-        valid_move = move(BOARD, potential_move, icon)
+        draw_board(board)
+        icon = player_icon(current_player)
+        potential_move = get_move(current_player)
+        valid_move = move(board, potential_move, icon)
         if valid_move:
-            win = check_win(BOARD, icon, check_row, check_column)
+            win = check_win(board, icon, check_row, check_column)
         else:
-            pass
-        if win:
-            draw_board(BOARD)
-            print('Player {} wins!'.format(CURRENT_PLAYER))
-        else:
-            CURRENT_PLAYER = toggle_player(CURRENT_PLAYER)
+            print("That move is invalid, please try again.")
+            continue
+        if not win:
+            current_player = toggle_player(current_player)
+    draw_board(board)
+    print('Player {} wins!'.format(current_player))
+
+if __name__ == '__main__':
+    play(BOARD, CURRENT_PLAYER)
