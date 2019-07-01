@@ -1,3 +1,4 @@
+from termcolor import colored
 import unittest
 import connect_four as cf
 
@@ -21,10 +22,10 @@ class TestConnectFour(unittest.TestCase):
         self.assertEqual(cf.toggle_player(1), 2)
 
     def test_player_one_icon(self):
-        self.assertEqual(cf.player_icon(1), 'X')
+        self.assertEqual(cf.player_icon(1), colored('X', 'red'))
     
     def test_player_two_icon(self):
-        self.assertEqual(cf.player_icon(2), 'O')
+        self.assertEqual(cf.player_icon(2), colored('O', 'blue'))
     
     def test_able_to_move(self):
         self.assertTrue(cf.able_to_move(self.board, 1))
