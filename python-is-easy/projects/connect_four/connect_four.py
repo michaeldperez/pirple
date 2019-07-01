@@ -1,3 +1,5 @@
+from termcolor import colored
+
 BOARD = [
     [' ', ' ', ' ', ' ', ' ', ' ', ' '], # row 1
     [' ', ' ', ' ', ' ', ' ', ' ', ' '], # row 2
@@ -13,7 +15,9 @@ def toggle_player(current_player):
     return (1, 2)[current_player == 1]
 
 def player_icon(current_player):
-    return ('O', 'X')[current_player == 1]
+    icon = ('O', 'X')[current_player == 1]
+    color = ('blue', 'red')[icon == 'X']
+    return colored(icon, color)
 
 def lenth_of_column(board, column):
     count = 0
