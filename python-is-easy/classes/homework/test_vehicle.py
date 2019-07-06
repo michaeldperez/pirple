@@ -24,6 +24,13 @@ class TestVehice(unittest.TestCase):
     def test_set_weight(self):
         self.vehicle.set_weight(2)
         self.assertEqual(self.vehicle.weight, 2)
+    
+    def test_repair(self):
+        self.vehicle.trips_since_maintenance = 101
+        self.vehicle.needs_maintenance = True
+        self.vehicle.repair()
+        self.assertFalse(self.vehicle.needs_maintenance)
+        self.assertEqual(self.vehicle.trips_since_maintenance, 0)
 
 if __name__ == '__main__':
     unittest.main()
