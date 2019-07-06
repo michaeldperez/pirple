@@ -34,3 +34,7 @@ class Vehicle(object):
     
     def set_weight(self, new_weight):
         self.weight = new_weight
+
+    def repair(self):
+        self.needs_maintenance = False
+        self.trips_since_maintenance = 0
