@@ -12,9 +12,9 @@ ItoolsConfig = namedtuple(
 
 class Itertools(object):
     '''
-    class to demo the itertools module
+    class to demo *many* of the functions in the itertools module
     '''
-    def __init__(self, config: ItoolsConfig):
+    def __init__(self, config):
         self.config   = config
         self._counter = itertools.count(
             start = self.config.count_start,
