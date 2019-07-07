@@ -6,7 +6,8 @@ class TestItertools(unittest.TestCase):
         self.config = ItoolsConfig(
             count_start = 0,
             count_step  = 1,
-            cycle_iter  = 'ABCD'
+            cycle_iter  = 'ABCD',
+            repeat_obj  = 'Hello'
         )
         self.iter_tools = Itertools(self.config)
     
@@ -28,6 +29,15 @@ class TestItertools(unittest.TestCase):
     
     def test_cycle_n_times(self):
         self.assertEqual(self.iter_tools.cycle(10), 'B')
+    
+    def test_repeater(self):
+        self.assertEqual(next(self.iter_tools.repeater), 'Hello')
+    
+    def test_repeat(self):
+        self.assertEqual(self.iter_tools.repeat(), 'Hello')
+    
+    def test_repeat_n_times(self):
+        self.assertEqual(self.iter_tools.repeat(10), 'Hello')
 
 
 if __name__ == '__main__':
