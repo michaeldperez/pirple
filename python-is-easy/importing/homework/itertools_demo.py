@@ -6,7 +6,8 @@ ItoolsConfig = namedtuple(
     [
         'count_start',
         'count_step',
-        'cycle_iter'
+        'cycle_iter',
+        'repeat_obj'
     ]
 )
 
@@ -21,6 +22,8 @@ class Itertools(object):
             step  = self.config.count_step
         )
         self._cycler = itertools.cycle(self.config.cycle_iter)
+        self._repeater = itertools.repeat(
+            object=self.config.repeat_obj)
     
     @property
     def counter(self):
@@ -35,6 +38,13 @@ class Itertools(object):
     
     def cycle(self, n = 1):
         return Itertools.iterate(self.cycler, n)
+    
+    @property
+    def repeater(self):
+        return self._repeater
+    
+    def repeat(self, n = 1):
+        return Itertools.iterate(self.repeater, n)
     
     @staticmethod
     def iterate(prop, n):
