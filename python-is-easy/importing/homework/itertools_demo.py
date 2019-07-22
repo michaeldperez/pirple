@@ -2,7 +2,7 @@ import itertools
 
 class Itertools(object):
     @property
-    def counter(self, start, step=1):
+    def counter(self, start=0, step=1):
         return itertools.count(start, step)
     
     @property
