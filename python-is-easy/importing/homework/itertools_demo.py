@@ -7,5 +7,7 @@ class Itertools(object):
     def cycle(self, iterable):
         return itertools.cycle(iterable)
     
-    def repeat(self, object, times=None):
-        return itertools.repeat(object, times)
+    def repeat(self, obj, times=None):
+        if times:
+            return itertools.repeat(obj, times)
+        return itertools.repeat(obj)
