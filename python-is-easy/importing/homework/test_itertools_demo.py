@@ -20,23 +20,27 @@ class TestItertools(unittest.TestCase):
         odds = list(next(counter) for _ in range(5))
         self.assertEqual(odds, [1,3,5,7,9])
     
-    # def test_cycler(self):
-    #     self.assertEqual(next(self.iter_tools.cycler), 'A')
+    def test_cycle(self):
+        cycler = self.itertools.cycle('abcd')
+        cycle = list(next(cycler) for _ in range(8))
+        self.assertEqual(cycle, [
+            'a', 'b', 'c', 'd', 'a', 'b', 'c', 'd'
+        ])
     
-    # def test_cycle_initial(self):
-    #     self.assertEqual(self.iter_tools.cycle(), 'A')
+    def test_infinite_repeat(self):
+        repeater = self.itertools.repeat(1)
+        for _ in range(100):
+            next(repeater)
+        self.assertEqual(next(repeater), 1)
     
-    # def test_cycle_n_times(self):
-    #     self.assertEqual(self.iter_tools.cycle(10), 'B')
-    
-    # def test_repeater(self):
-    #     self.assertEqual(next(self.iter_tools.repeater), 'Hello')
-    
-    # def test_repeat(self):
-    #     self.assertEqual(self.iter_tools.repeat(), 'Hello')
-    
-    # def test_repeat_n_times(self):
-    #     self.assertEqual(self.iter_tools.repeat(10), 'Hello')
+    def test_n_repeat(self):
+        repeater = self.itertools.repeat('a', 10)
+        repeat = list(next(repeater) for _ in range(10))
+        self.assertEqual(repeat, [
+            'a', 'a', 'a', 'a', 'a', \
+            'a', 'a', 'a', 'a', 'a'
+        ])
+
 
 
 
