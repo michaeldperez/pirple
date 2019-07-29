@@ -11,3 +11,6 @@ class Itertools(object):
         if times:
             return itertools.repeat(obj, times)
         return itertools.repeat(obj)
+    
+    def product(self, *args, repeat=1):
+        return itertools.product(*args, repeat=repeat)
