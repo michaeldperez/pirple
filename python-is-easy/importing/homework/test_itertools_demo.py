@@ -61,6 +61,24 @@ class TestItertools(unittest.TestCase):
             (1,2,1), (1,2,2), (1,2,3)
         ])
 
+    def test_full_permutations(self):
+        permut = self.itertools.permutations('abc')
+        permutaitons = list(next(permut) for _ in range(6))
+        self.assertEqual(permutaitons, [
+            ('a', 'b', 'c'), ('a', 'c', 'b'), \
+            ('b', 'a', 'c'), ('b', 'c', 'a'), \
+            ('c', 'a', 'b'), ('c', 'b', 'a')
+        ])
+
+    def test_reduced_permutations(self):
+        permut = self.itertools.permutations('abcd', 2)
+        permutations = list(next(permut) for _ in range(12))
+        self.assertEqual(permutations, [
+            ('a', 'b'), ('a', 'c'), ('a', 'd'), \
+            ('b', 'a'), ('b', 'c'), ('b', 'd'), \
+            ('c', 'a'), ('c', 'b'), ('c', 'd'), \
+            ('d', 'a'), ('d', 'b'), ('d', 'c')
+        ])
 
 if __name__ == '__main__':
     unittest.main()
