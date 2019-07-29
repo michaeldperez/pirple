@@ -14,3 +14,6 @@ class Itertools(object):
     
     def product(self, *args, repeat=1):
         return itertools.product(*args, repeat=repeat)
+    
+    def permutations(self, iterable, length=None):
+        return itertools.permutations(iterable, r=length)
