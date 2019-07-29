@@ -41,7 +41,25 @@ class TestItertools(unittest.TestCase):
             'a', 'a', 'a', 'a', 'a'
         ])
 
+    def test_product(self):
+        productor = self.itertools.product(
+            ['a', 'b','c'], \
+            ['x', 'y', 'z']
+        )
+        cartesian_product = list(next(productor) for _ in range(9))
+        self.assertEqual(cartesian_product, [
+            ('a', 'x'), ('a', 'y'), ('a', 'z'), \
+            ('b', 'x'), ('b', 'y'), ('b', 'z'), \
+            ('c', 'x'), ('c', 'y'), ('c', 'z')
+        ])
 
+    def test_self_product(self):
+        prouctor = self.itertools.product([1, 2, 3], repeat=3)
+        cartesian_product = list(next(prouctor) for _ in range(6))
+        self.assertEqual(cartesian_product, [
+            (1,1,1), (1,1,2), (1,1,3), \
+            (1,2,1), (1,2,2), (1,2,3)
+        ])
 
 
 if __name__ == '__main__':
