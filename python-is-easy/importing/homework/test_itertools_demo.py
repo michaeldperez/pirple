@@ -79,6 +79,14 @@ class TestItertools(unittest.TestCase):
             ('c', 'a'), ('c', 'b'), ('c', 'd'), \
             ('d', 'a'), ('d', 'b'), ('d', 'c')
         ])
+    
+    def test_combinations(self):
+        combo = self.itertools.combinations('12345', 3)
+        combinations = list(next(combo) for _ in range(6))
+        self.assertEqual(combinations, [
+            ('1', '2', '3'), ('1', '2', '4'), ('1', '2', '5'), \
+            ('1', '3', '4'), ('1', '3', '5'), ('1', '4', '5')
+        ])
 
 if __name__ == '__main__':
     unittest.main()
