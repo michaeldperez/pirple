@@ -20,3 +20,6 @@ class Itertools(object):
 
     def combinations(self, iterable, length):
         return itertools.combinations(iterable, length)
+    
+    def combinations_with_replacement(self, iterable, length):
+        return itertools.combinations_with_replacement(iterable, length)
