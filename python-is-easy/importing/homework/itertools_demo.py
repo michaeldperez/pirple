@@ -6,6 +6,8 @@ class Itertools(object):
         on how to use its methods. See ./test_itertools_demo.py
         for example uses in the form of tests.
     '''
+
+    # infinte iterators
     def count(self, start=0, step=1):
         return itertools.count(start, step)
     
@@ -17,6 +19,7 @@ class Itertools(object):
             return itertools.repeat(obj, times)
         return itertools.repeat(obj)
     
+    # combinatoric iterators
     def product(self, *args, repeat=1):
         return itertools.product(*args, repeat=repeat)
     
@@ -28,3 +31,5 @@ class Itertools(object):
     
     def combinations_with_replacement(self, iterable, length):
         return itertools.combinations_with_replacement(iterable, length)
+    
+    # function iterators
