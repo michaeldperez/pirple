@@ -88,5 +88,13 @@ class TestItertools(unittest.TestCase):
             ('1', '3', '4'), ('1', '3', '5'), ('1', '4', '5')
         ])
 
+    def test_combinations_with_replacement(self):
+        combo = self.itertools.combinations_with_replacement('12345', 3)
+        combinations = list(next(combo) for _ in range(6))
+        self.assertEqual(combinations, [
+            ('1', '1', '1'), ('1', '1', '2'), ('1', '1', '3'), \
+            ('1', '1', '4'), ('1', '1', '5'), ('1', '2', '2')
+        ])
+
 if __name__ == '__main__':
     unittest.main()
