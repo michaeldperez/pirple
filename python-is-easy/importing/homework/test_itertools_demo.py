@@ -95,6 +95,20 @@ class TestItertools(unittest.TestCase):
             ('1', '1', '1'), ('1', '1', '2'), ('1', '1', '3'), \
             ('1', '1', '4'), ('1', '1', '5'), ('1', '2', '2')
         ])
+    
+    def test_default_accumulate(self):
+        first_five = [1, 2, 3, 4, 5]
+        acc = self.itertools.accumulate(first_five)
+        accumulations = list(next(acc) for _ in range(len(first_five)))
+        self.assertEqual(accumulations, [1, 3, 6, 10, 15])
+    
+    def test_accumulate_with_function(self):
+        rand_nums = [7, 19, 33, 12]
+        iter_function = lambda x, y: (x+y)*(x/y)
+        acc = self.itertools.accumulate(rand_nums, iter_function)
+        accumulations = list(round(next(acc), 2) for _ in range(len(rand_nums)))
+        self.assertEqual(accumulations, [7, 9.58, 12.36, 25.09])
+
 
 if __name__ == '__main__':
     unittest.main()
