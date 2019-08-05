@@ -1,6 +1,11 @@
 import itertools
 
 class Itertools(object):
+    ''' The purpose of this class is to learn a library
+        and demonstrate that knowledge through examples
+        on how to use its methods. See ./test_itertools_demo.py
+        for example uses in the form of tests.
+    '''
     def count(self, start=0, step=1):
         return itertools.count(start, step)
     
