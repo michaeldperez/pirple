@@ -17,3 +17,6 @@ class Itertools(object):
     
     def permutations(self, iterable, length=None):
         return itertools.permutations(iterable, r=length)
+
+    def combinations(self, iterable, length):
+        return itertools.combinations(iterable, length)
