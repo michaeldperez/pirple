@@ -1,4 +1,5 @@
 import itertools
+import operator
 
 class Itertools(object):
     ''' The purpose of this class is to learn a library
@@ -33,3 +34,5 @@ class Itertools(object):
         return itertools.combinations_with_replacement(iterable, length)
     
     # function iterators
+    def accumulate(self, iterable, func=operator.add):
+        return itertools.accumulate(iterable, func)
