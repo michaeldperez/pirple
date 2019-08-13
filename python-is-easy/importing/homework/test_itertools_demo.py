@@ -108,6 +108,13 @@ class TestItertools(unittest.TestCase):
         acc = self.itertools.accumulate(rand_nums, iter_function)
         accumulations = list(round(next(acc), 2) for _ in range(len(rand_nums)))
         self.assertListEqual(accumulations, [7, 9.58, 12.36, 25.09])
+    
+    def test_chain(self):
+        iter_one = [1, 2, 3]
+        iter_two = 'ABC'
+        chained = self.itertools.chain(iter_one, iter_two)
+        chained_list = list(next(chained) for _ in range(len(iter_one) + len(iter_two)))
+        self.assertListEqual(chained_list, [1, 2, 3, 'A', 'B', 'C'])
 
 
 if __name__ == '__main__':
