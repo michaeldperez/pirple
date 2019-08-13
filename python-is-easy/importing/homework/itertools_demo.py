@@ -36,3 +36,6 @@ class Itertools(object):
     # function iterators
     def accumulate(self, iterable, func=operator.add):
         return itertools.accumulate(iterable, func)
+
+    def chain(self, *iterables):
+        return itertools.chain(*iterables)
