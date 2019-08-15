@@ -39,3 +39,6 @@ class Itertools(object):
 
     def chain(self, *iterables):
         return itertools.chain(*iterables)
+    
+    def compress(self, iterable, selector):
+        return itertools.compress(iterable, selector)
