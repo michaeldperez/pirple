@@ -116,6 +116,18 @@ class TestItertools(unittest.TestCase):
         chained_list = list(next(chained) for _ in range(len(iter_one) + len(iter_two)))
         self.assertListEqual(chained_list, [1, 2, 3, 'A', 'B', 'C'])
 
+    def test_compress(self):
+        iterable = 'aBcDeFg'
+        lower_case_selector = [1,0,1,0,1,0,1]
+        upper_case_selector = [0,1,0,1,0,1,0]
+        lower_case_compressor = self.itertools.compress(iterable, lower_case_selector)
+        upper_case_compressor = self.itertools.compress(iterable, upper_case_selector)
+        lower_case_letters = ''.join(list(next(lower_case_compressor) for _ in range(4)))
+        upper_case_letters = ''.join(list(next(upper_case_compressor) for _ in range(3)))
+        self.assertEqual(lower_case_letters, 'aceg')
+        self.assertEqual(upper_case_letters, 'BDF')
+
+
 
 if __name__ == '__main__':
     unittest.main()
