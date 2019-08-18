@@ -133,7 +133,20 @@ class TestItertools(unittest.TestCase):
         drop_multiples_of_three = self.itertools.dropwhile(iterable, predicate)
         last_three = list(next(drop_multiples_of_three) for _ in range(3))
         self.assertListEqual(last_three, [16, 18, 21])
-
+        
+    def test_filter_false(self):
+        tradelines = [
+            {'type': 'credit card',  'balance': 100  },
+            {'type': 'credit card',  'balance': 0    },
+            {'type': 'mortgage',     'balance': 2700 },
+            {'type': 'student loan', 'balance': 0    }
+        ]
+        has_balance = lambda tl: tl['balance'] > 0
+        process_tradelines = self.itertools.filterfalse(tradelines, has_balance)
+        paid_off = list(
+            next(process_tradelines)['type'] for _ in range(2)
+        )
+        self.assertListEqual(paid_off, ['credit card', 'student loan'])
 
 
 if __name__ == '__main__':
