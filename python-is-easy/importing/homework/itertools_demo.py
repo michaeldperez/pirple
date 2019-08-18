@@ -45,3 +45,6 @@ class Itertools(object):
     
     def dropwhile(self, iterable, predicate):
         return itertools.dropwhile(predicate, iterable)
+    
+    def filterfalse(self, iterable, predicate):
+        return itertools.filterfalse(predicate, iterable)
