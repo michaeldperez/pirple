@@ -126,6 +126,13 @@ class TestItertools(unittest.TestCase):
         upper_case_letters = ''.join(list(next(upper_case_compressor) for _ in range(3)))
         self.assertEqual(lower_case_letters, 'aceg')
         self.assertEqual(upper_case_letters, 'BDF')
+    
+    def test_drop_while(self):
+        iterable = [3, 6, 9, 12, 15, 16, 18, 21]
+        predicate = lambda x: x % 3 == 0
+        drop_multiples_of_three = self.itertools.dropWhile(iterable, predicate)
+        last_three = list(next(drop_multiples_of_three) for _ in range(3))
+        self.assertListEqual(last_three, [16, 18, 21])
 
 
 
