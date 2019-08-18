@@ -43,5 +43,5 @@ class Itertools(object):
     def compress(self, iterable, selector):
         return itertools.compress(iterable, selector)
     
-    def dropWhile(self, iterable, predicate):
+    def dropwhile(self, iterable, predicate):
         return itertools.dropwhile(predicate, iterable)

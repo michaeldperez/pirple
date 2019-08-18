@@ -130,7 +130,7 @@ class TestItertools(unittest.TestCase):
     def test_drop_while(self):
         iterable = [3, 6, 9, 12, 15, 16, 18, 21]
         predicate = lambda x: x % 3 == 0
-        drop_multiples_of_three = self.itertools.dropWhile(iterable, predicate)
+        drop_multiples_of_three = self.itertools.dropwhile(iterable, predicate)
         last_three = list(next(drop_multiples_of_three) for _ in range(3))
         self.assertListEqual(last_three, [16, 18, 21])
 
