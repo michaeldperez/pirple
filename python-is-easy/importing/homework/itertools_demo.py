@@ -48,3 +48,6 @@ class Itertools(object):
     
     def filterfalse(self, iterable, predicate):
         return itertools.filterfalse(predicate, iterable)
+    
+    def groupby(self, iterable, key):
+        return itertools.groupby(iterable, key)
