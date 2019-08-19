@@ -155,6 +155,15 @@ class TestItertools(unittest.TestCase):
         lte_5, gt_5 = [list(g) for k, g in group_iter]
         self.assertListEqual(lte_5, [0, 1, 2, 3, 4 ,5])
         self.assertListEqual(gt_5, [6, 7, 8, 9, 10])
+    
+    def test_group_by_with_default_key(self):
+        ordered_numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        group_iter = self.itertools.groupby(ordered_numbers)
+        ordered = [list(g) for k, g in group_iter]
+        self.assertListEqual(ordered, [
+            [0], [1], [2], [3], [4], [5], \
+            [6], [7], [8], [9], [10]
+        ])
 
 
 if __name__ == '__main__':
