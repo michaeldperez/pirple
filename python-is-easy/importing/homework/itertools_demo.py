@@ -51,3 +51,6 @@ class Itertools(object):
     
     def groupby(self, iterable, key=None):
         return itertools.groupby(iterable, key=key)
+    
+    def islice(self, iterable, *args):
+        return itertools.islice(iterable, *args)
