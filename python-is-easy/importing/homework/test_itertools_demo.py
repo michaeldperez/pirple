@@ -164,6 +164,30 @@ class TestItertools(unittest.TestCase):
             [0], [1], [2], [3], [4], [5], \
             [6], [7], [8], [9], [10]
         ])
+    
+    def test_islice_with_stop_only(self):
+        integers = [0, 1, 2, 3, 4, 5]
+        first_three = self.itertools.islice(integers, 3)
+        list_of_first_three = [next(first_three) for _ in range(3)]
+        self.assertListEqual(list_of_first_three, [0, 1, 2])
+    
+    def test_islice_with_start_and_stop(self):
+        integers = [0, 1, 2, 3, 4, 5]
+        mid_three = self.itertools.islice(integers, 1, 4)
+        list_of_mid_three = [next(mid_three) for _ in range(3)]
+        self.assertListEqual(list_of_mid_three, [1, 2, 3])
+    
+    def test_islice_with_start_and_step(self):
+        integers = [0, 1, 2, 3, 4, 5]
+        evens = self.itertools.islice(integers, 0, None, 2)
+        list_of_evens = [next(evens) for _ in range(3)]
+        self.assertListEqual(list_of_evens, [0, 2, 4])
+    
+    def test_islice_with_start_stop_and_step(self):
+        integers = [0, 1, 2, 3, 4, 5]
+        first_two_odds = self.itertools.islice(integers, 1, 4, 2)
+        list_of_first_two_odds = [next(first_two_odds) for _ in range(2)]
+        self.assertListEqual(list_of_first_two_odds, [1, 3])
 
 
 if __name__ == '__main__':
