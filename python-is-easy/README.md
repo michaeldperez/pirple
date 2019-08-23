@@ -1,0 +1,1 @@
+Homework and project assignments associated with Pirple's [Python is Easy](https://pirple.thinkific.com/courses/python-is-easy) course
