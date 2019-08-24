@@ -54,3 +54,6 @@ class Itertools(object):
     
     def islice(self, iterable, *args):
         return itertools.islice(iterable, *args)
+    
+    def starmap(self, iterable, func):
+        return itertools.starmap(func, iterable)
