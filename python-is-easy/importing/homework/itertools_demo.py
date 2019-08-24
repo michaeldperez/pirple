@@ -57,3 +57,6 @@ class Itertools(object):
     
     def starmap(self, iterable, func):
         return itertools.starmap(func, iterable)
+    
+    def takewhile(self, iterable, predicate):
+        return itertools.takewhile(predicate, iterable)
