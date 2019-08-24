@@ -60,3 +60,6 @@ class Itertools(object):
     
     def takewhile(self, iterable, predicate):
         return itertools.takewhile(predicate, iterable)
+    
+    def zip_longest(self, *iterables, fillvalue=None):
+        return itertools.zip_longest(*iterables, fillvalue=fillvalue)
