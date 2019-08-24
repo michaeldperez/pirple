@@ -195,6 +195,13 @@ class TestItertools(unittest.TestCase):
         list_of_powers_of_two = [next(powers_of_two) for _ in range(len(tuples))]
         self.assertListEqual(list_of_powers_of_two, [1, 2, 4, 8, 16, 32])
 
+    def test_takewhile(self):
+        mostly_odd = [1, 3, 5, 7, 9, 11, 12, 13]
+        is_odd = lambda x: x % 2 == 1
+        take_odds = self.itertools.takewhile(mostly_odd, is_odd)
+        first_odds = [next(take_odds) for _ in range(6)]
+        self.assertListEqual(first_odds, [1, 3, 5, 7, 9, 11])
+
 
 if __name__ == '__main__':
     unittest.main()
