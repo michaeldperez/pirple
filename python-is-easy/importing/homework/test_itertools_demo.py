@@ -201,6 +201,23 @@ class TestItertools(unittest.TestCase):
         take_odds = self.itertools.takewhile(mostly_odd, is_odd)
         first_odds = [next(take_odds) for _ in range(6)]
         self.assertListEqual(first_odds, [1, 3, 5, 7, 9, 11])
+    
+    def test_zip_longest(self):
+        iter_one = [1, 2, 3, 4]
+        iter_two = 'ABCD'
+        zipped_iter = self.itertools.zip_longest(iter_one, iter_two)
+        zipped = [next(zipped_iter) for _ in range(4)]
+        self.assertListEqual(zipped, [(1, 'A'), (2, 'B'), (3, 'C'), (4, 'D')])
+    
+    def test_zip_longest_with_fill_value(self):
+        iter_one = [1, 2, 3, 4, 5, 6]
+        iter_two = 'ABCD'
+        zipped_iter = self.itertools.zip_longest(iter_one, iter_two, fillvalue='X')
+        zipped = [next(zipped_iter) for _ in range(6)]
+        self.assertListEqual(zipped, [
+            (1, 'A'), (2, 'B'), (3, 'C'), \
+            (4, 'D'), (5, 'X'), (6, 'X')
+        ])
 
 
 if __name__ == '__main__':
