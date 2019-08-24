@@ -188,6 +188,12 @@ class TestItertools(unittest.TestCase):
         first_two_odds = self.itertools.islice(integers, 1, 4, 2)
         list_of_first_two_odds = [next(first_two_odds) for _ in range(2)]
         self.assertListEqual(list_of_first_two_odds, [1, 3])
+    
+    def test_starmap(self):
+        tuples = [(2,0), (2,1), (2,2), (2,3), (2,4), (2,5)]
+        powers_of_two = self.itertools.starmap(tuples, pow)
+        list_of_powers_of_two = [next(powers_of_two) for _ in range(len(tuples))]
+        self.assertListEqual(list_of_powers_of_two, [1, 2, 4, 8, 16, 32])
 
 
 if __name__ == '__main__':
