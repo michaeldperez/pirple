@@ -37,7 +37,7 @@ class Hangman:
 
             guessed_letter = input("Player Two please guess a letter: ")
             self.add_guessed_letter(guessed_letter)
-            letter_exists, is_discovered, obfuscated_word = self.word.check(guessed_letter)
+            letter_exists, is_discovered = self.word.check(guessed_letter)
 
             if is_discovered:
                 self.game_is_being_played = False
