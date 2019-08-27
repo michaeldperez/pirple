@@ -13,9 +13,6 @@ class Hangman:
         self.game_is_being_played = True
         self.guessed_letters = []
     
-    def set_incorrect_guess_limit(self, limit):
-        self.incorrect_guess_limit = limit
-    
     def check_incorrect_guess_limit(self, current_number_of_incorrect_guesses):
         return (False, True)[current_number_of_incorrect_guesses >= self.incorrect_guess_limit]
 
