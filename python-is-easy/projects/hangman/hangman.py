@@ -36,6 +36,11 @@ class Hangman:
             self.hangman_figure.render()
 
             guessed_letter = input("Player Two please guess a letter: ")
+
+            if guessed_letter in self.guessed_letters:
+                print(f'You already guessed {guessed_letter}.')
+                continue
+
             self.add_guessed_letter(guessed_letter)
             letter_exists, is_discovered = self.word.check(guessed_letter)
 
