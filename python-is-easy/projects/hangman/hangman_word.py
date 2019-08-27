@@ -8,11 +8,11 @@ class HangmanWord:
             indices = self._find_indices(self.word, letter)
             self.obfuscated_word = self._reveal(letter, indices, self.obfuscated_word)
             if self._discovered(self.word, self.obfuscated_word):
-                return (True, True, None)
+                return (True, True)
             else:
-                return (True, False, self.obfuscated_word)
+                return (True, False)
         else:
-            return (False, False, self.obfuscated_word)
+            return (False, False)
     
     def _contains(self, word, letter):
         return (False, True)[letter in word]
