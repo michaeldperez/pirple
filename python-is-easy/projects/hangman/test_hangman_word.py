@@ -16,14 +16,13 @@ class HangmanWordTest(unittest.TestCase):
         self.hangman_word._reveal.return_value = "hello"
         self.hangman_word._discovered = MagicMock(name="discovered")
         self.hangman_word._discovered.return_value = True
-        letter_exists, is_discovered, obfuscated_word  = self.hangman_word.check("o")
+        letter_exists, is_discovered  = self.hangman_word.check("o")
         self.hangman_word._contains.assert_called_with("hello", "o")
         self.hangman_word._find_indices.assert_called_with("hello", "o")
         self.hangman_word._reveal.assert_called_with("o", [4], "hell_")
         self.hangman_word._discovered.assert_called_with("hello", "hello")
         self.assertTrue(letter_exists)
         self.assertTrue(is_discovered)
-        self.assertIsNone(obfuscated_word)
     
     def test_when_true_and_incomplete(self):
         self.hangman_word._contains = MagicMock(name="contains")
@@ -34,23 +33,21 @@ class HangmanWordTest(unittest.TestCase):
         self.hangman_word._reveal.return_value = "__ll_"
         self.hangman_word._discovered = MagicMock(name="discovered")
         self.hangman_word._discovered.return_value = False
-        letter_exists, is_discovered, obfuscated_word  = self.hangman_word.check("l")
+        letter_exists, is_discovered  = self.hangman_word.check("l")
         self.hangman_word._contains.assert_called_with("hello", "l")
         self.hangman_word._find_indices.assert_called_with("hello", "l")
         self.hangman_word._reveal.assert_called_with("l", [2,3], "_____")
         self.hangman_word._discovered.assert_called_with("hello", "__ll_")
         self.assertTrue(letter_exists)
         self.assertFalse(is_discovered)
-        self.assertEqual(obfuscated_word, "__ll_")
     
     def test_check_when_false(self):
         self.hangman_word._contains = MagicMock(name="contains")
         self.hangman_word._contains.return_value = False
-        letter_exists, is_discovered, obfuscated_word = self.hangman_word.check("x")
+        letter_exists, is_discovered = self.hangman_word.check("x")
         self.hangman_word._contains.assert_called_with("hello", "x")
         self.assertFalse(letter_exists)
         self.assertFalse(is_discovered)
-        self.assertEqual(obfuscated_word, "_____")
 
 if __name__ == "__main__":
     unittest.main()
