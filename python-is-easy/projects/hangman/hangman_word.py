@@ -31,9 +31,10 @@ class HangmanWord:
         return obfuscated
     
     def _reveal(self, letter, indices, obfuscated_word):
+        obfuscated_word_list = list(obfuscated_word)
         for index in indices:
-            obfuscated_word[index] = letter
-        return obfuscated_word
+            obfuscated_word_list[index] = letter
+        return ''.join(obfuscated_word_list)
     
     def _discovered(self, word, obfuscated_word):
         return word == obfuscated_word
