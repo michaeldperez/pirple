@@ -1,0 +1,1 @@
+Homework and project assignments associated with Pirple's [Node.js Master class](https://pirple.thinkific.com/courses/the-nodejs-master-class)
