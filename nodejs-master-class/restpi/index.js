@@ -3,7 +3,7 @@ const url               = require('url');
 const { StringDecoder } = require('string_decoder');
 
 const server = http.createServer((req, res) => {
-    let buffer        = '';
+    let payload        = '';
     const parsedUrl   = url.parse(req.url, true);
     const path        = parsedUrl.pathname;
     const queryString = parsedUrl.query;
@@ -13,16 +13,40 @@ const server = http.createServer((req, res) => {
     const decoder     = new StringDecoder('utf-8');
 
     req.on('data', data => {
-        buffer += decoder.write(data);
+        payload += decoder.write(data);
     });
 
     req.on('end', () => {
-        buffer += decoder.end();
-        res.end('Hello World!\n');
-        console.log(`${method} request received on path: ${trimmedPath}`);
-        console.log('Query: ', queryString);
-        console.log('Headers ', headers);
-        console.log(`Payload: ${buffer}`);
+        payload += decoder.end();
+
+        const handler = typeof(router[trimmedPath]) !== 'undefined'
+            ? router[trimmedPath] 
+            : router.notFound;
+
+        const data = {
+            headers,
+            method,
+            queryString,
+            payload,
+            trimmedPath
+        };
+
+        handler(data, (statusCode, payload) => {
+            statusCode = typeof(statusCode) === 'number'
+                ? statusCode
+                : 200;
+            
+            payload = typeof(payload) === 'object'
+                ? payload
+                : {};
+            
+            const serializedPayload = JSON.stringify(payload);
+
+            res.writeHead(statusCode);
+            res.end(serializedPayload);
+
+            console.log(`Returning response ${statusCode} and ${serializedPayload}`);
+        });
     });
 
 });
@@ -30,3 +54,18 @@ const server = http.createServer((req, res) => {
 server.listen(3000, () => {
     console.log('The server is listening on port 3000');
 });
+
+const handlers = {
+    sample: (data, callback) => {
+        callback(406, {'name': 'sample handler'});
+    },
+
+    notFound: (data, callback) => {
+        callback(404);
+    }
+};
+
+const router = {
+    sample: handlers.sample,
+    notFound: handlers.notFound
+};
