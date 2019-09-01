@@ -42,6 +42,7 @@ const server = http.createServer((req, res) => {
             
             const serializedPayload = JSON.stringify(payload);
 
+            res.setHeader('Content-Type', 'application/json');
             res.writeHead(statusCode);
             res.end(serializedPayload);
 
