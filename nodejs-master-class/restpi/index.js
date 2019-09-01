@@ -1,10 +1,27 @@
-const http              = require('http');
-const url               = require('url');
-const { StringDecoder } = require('string_decoder');
-const { port, envName } = require('./config');
+const http                    = require('http');
+const https                   = require('https');
+const url                     = require('url');
+const fs                      = require('fs');
+const { StringDecoder }       = require('string_decoder');
+const { httpPort, httpsPort } = require('./config');
 
-const server = http.createServer((req, res) => {
-    let payload        = '';
+const httpsOptions = {
+    key: fs.readFileSync('./certs/key.pem'),
+    cert: fs.readFileSync('./certs/cert.pem')
+};
+const httpServer   = http.createServer(unifiedServer);
+const httpsServer  = https.createServer(httpsOptions, unifiedServer); 
+
+httpServer.listen(httpPort, () => {
+    console.log(`The http server is listening on port ${httpPort}`);
+});
+
+httpsServer.listen(httpsPort, () => {
+    console.log(`The https server is listening on port ${httpsPort}`);
+});
+
+function unifiedServer(req, res) {
+    let payload       = '';
     const parsedUrl   = url.parse(req.url, true);
     const path        = parsedUrl.pathname;
     const queryString = parsedUrl.query;
@@ -50,12 +67,7 @@ const server = http.createServer((req, res) => {
             console.log(`Returning response ${statusCode} and ${serializedPayload}`);
         });
     });
-
-});
-
-server.listen(3000, () => {
-    console.log(`The server is listening on port ${port} in ${envName} mode`);
-});
+};
 
 const handlers = {
     sample: (data, callback) => {
