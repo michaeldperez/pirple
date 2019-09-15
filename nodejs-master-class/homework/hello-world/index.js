@@ -39,8 +39,8 @@ const requestHandler = (req, res) => {
     req.on('end', () => {
         payload += decoder.end();
 
-        const handler = typeof(router[trimmedPath]) !== undefined
-            ? rounter[trimmedPath]
+        const handler = typeof(router[trimmedPath]) !== 'undefined'
+            ? router[trimmedPath]
             : router.notfound;
 
         const data = {
