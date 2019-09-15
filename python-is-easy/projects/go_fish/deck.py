@@ -24,3 +24,10 @@ class Deck:
     
     def shuffle(self):
         random.shuffle(self.cards)
+    
+    def draw(self, n):
+        number_of_cards = len(self.cards)
+        if n >= number_of_cards:
+           return [self.cards.pop() for _ in range(0,n)]
+        else:
+            raise IndexError(f'{n} is greater than the current number of cards: {number_of_cards}')
