@@ -2,6 +2,26 @@ const http              = require('http');
 const url               = require('url');
 const { StringDecoder } = require('string_decoder');
 
+const handlers = {
+    hello: (data, callback) => {
+        callback(200, {message: 'Hello, World!'});
+    },
+
+    notFound: (data, callback) => {
+        callback(404, null);
+    },
+
+    ping: (data, callback) => {
+        callback(200, null);
+    }
+};
+
+const router = {
+    hello: handlers.hello,
+    notfound: handlers.notFound,
+    ping: handlers.ping
+};
+
 const requestHandler = (req, res) => {
     let payload;
     const parsedUrl   = url.parse(req.url, true);
@@ -18,6 +38,36 @@ const requestHandler = (req, res) => {
 
     req.on('end', () => {
         payload += decoder.end();
+
+        const handler = typeof(router[trimmedPath]) !== undefined
+            ? rounter[trimmedPath]
+            : router.notfound;
+
+        const data = {
+            headers,
+            method,
+            queryStr,
+            payload,
+            trimmedPath
+        };
+
+        handler(data, (statusCode, payload) => {
+            statusCode == typeof(statusCode) === 'number'
+                ? statusCode
+                : 200;
+            
+            payload = typeof(payload) === 'object'
+                ? payload
+                : {};
+            
+            const serializedPayload = JSON.stringify(payload);
+
+            res.setHeader('Content-Type', 'application/json');
+            res.writeHead(statusCode);
+            res.end(serializedPayload);
+
+            console.log(`Returning response ${statusCode} and payload ${serializedPayload}`);
+        });
     });
 };
 
