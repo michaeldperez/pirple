@@ -45,12 +45,21 @@ class TestDeck(unittest.TestCase):
         with self.assertRaises(ValueError) as cm:
             self.deck.draw(-1)
         self.assertEqual(
-            'Number of cards drawn must be positive: -1', \
+            'Number of cards drawn must be positive: -1',
             str(cm.exception)
         )
 
     def test_draw_too_many_cards(self):
-        pass
+        self.deck.create()
+        self.deck.shuffle()
+        for _ in range(0, 4):
+            self.deck.draw(13)
+        with self.assertRaises(IndexError) as cm:
+            self.deck.draw(1)
+        self.assertEqual(
+            '1 is greater than the current number of cards: 0',
+            str(cm.exception)
+        )
 
 if __name__ == '__main__':
     unittest.main()
