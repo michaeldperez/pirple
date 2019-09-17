@@ -15,8 +15,12 @@ class Deck:
     ]
  
     def __init__(self):
-        self.cards = []
+        self._cards = []
     
+    @property
+    def cards(self):
+        return self._cards
+
     def create(self):
         for suit in Deck.suits:
             for rank in Deck.ranks:
