@@ -40,7 +40,14 @@ class TestDeck(unittest.TestCase):
         ], hand)
 
     def test_draw_negative_cards(self):
-        pass
+        self.deck.create()
+        self.deck.shuffle()
+        with self.assertRaises(ValueError) as cm:
+            self.deck.draw(-1)
+        self.assertEqual(
+            'Number of cards drawn must be positive: -1', \
+            str(cm.exception)
+        )
 
     def test_draw_too_many_cards(self):
         pass
