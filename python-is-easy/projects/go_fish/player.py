@@ -14,13 +14,7 @@ class Player:
         self.hand_of_cards.extend(cards_to_add)
     
     def remove_cards(self, card_to_remove):
-        card_indices = []
-        removed_cards = []
-        for idx, card in enumerate(self.hand_of_cards):
-            if card_to_remove in card:
-                card_indices.append(idx)
-        for index in card_indices:
-            removed_cards.append(
-                self.hand_of_cards.pop(index)
-            )
-        return removed_cards
+        return list(filter(
+            lambda card: card_to_remove in card, 
+            self.hand_of_cards
+        ))
