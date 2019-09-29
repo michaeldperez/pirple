@@ -17,7 +17,7 @@ class Player:
         card_indices = []
         removed_cards = []
         for idx, card in enumerate(self.hand_of_cards):
-            if card == card_to_remove: # need to match rank
+            if card_to_remove in card:
                 card_indices.append(idx)
         for index in card_indices:
             removed_cards.append(
