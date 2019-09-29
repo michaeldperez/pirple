@@ -35,7 +35,12 @@ class TestPlayer(unittest.TestCase):
         self.assertListEqual(['K\u2663', '10\u2665'], self.player.hand_of_cards)
     
     def test_remove_cards(self):
-        pass
+        ten = self.player.remove_cards('10')
+        self.assertListEqual(ten, ['10\u2665'])
+    
+    def test_remove_non_existant_cards(self):
+        no_cards = self.player.remove_cards('9')
+        self.assertListEqual(no_cards, [])
 
 if __name__ == '__main__':
     unittest.main()
