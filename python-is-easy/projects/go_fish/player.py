@@ -14,7 +14,9 @@ class Player:
         self.hand_of_cards.extend(cards_to_add)
     
     def remove_cards(self, card_to_remove):
-        return list(filter(
-            lambda card: card_to_remove in card, 
-            self.hand_of_cards
-        ))
+        return list(
+            filter(
+                lambda card: card_to_remove in card, 
+                self.hand_of_cards
+            )
+        )
