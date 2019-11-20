@@ -1,22 +1,21 @@
+from typing import List
+from card import Card
+from hand_of_cards import HandOfCards
+
 class Player:
-    def __init__(self):
-        self._hand_of_cards = []
-    
+    def __init__(self, hand_of_cards: HandOfCards):
+        self._hand_of_cards: HandOfCards = hand_of_cards
+
     @property
-    def hand_of_cards(self):
+    def hand_of_cards(self) -> HandOfCards:
         return self._hand_of_cards
     
     @hand_of_cards.setter
-    def hand_of_cards(self, hand):
+    def hand_of_cards(self, hand: HandOfCards) -> None:
         self._hand_of_cards = hand
     
-    def add_cards(self, cards_to_add):
-        self.hand_of_cards.extend(cards_to_add)
+    def add_cards(self, cards_to_add: List[Card]) -> None:
+        self.hand_of_cards.add_cards(cards_to_add)
     
-    def remove_cards(self, card_to_remove):
-        return list(
-            filter(
-                lambda card: card_to_remove in card, 
-                self.hand_of_cards
-            )
-        )
+    def remove_cards(self, card_to_remove: str) -> List[Card]:
+        return self.hand_of_cards.remove_cards(card_to_remove)
