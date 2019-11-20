@@ -1,4 +1,6 @@
 import random
+from typing import List
+from card import Card
 
 class Deck:
     suits = [
@@ -15,22 +17,22 @@ class Deck:
     ]
  
     def __init__(self):
-        self._cards = []
+        self._cards: List[Card] = []
     
     @property
-    def cards(self):
+    def cards(self) -> List[Card]:
         return self._cards
 
-    def create(self):
+    def create(self) -> None:
         for suit in Deck.suits:
             for rank in Deck.ranks:
-                self.cards.append(f'{rank}{suit}')
+                self.cards.append(Card(rank, suit))
     
-    def shuffle(self):
+    def shuffle(self) -> None:
         random.shuffle(self.cards)
     
-    def draw(self, n):
-        number_of_cards = len(self.cards)
+    def draw(self, n) -> List[Card]:
+        number_of_cards: int = len(self.cards)
         if n <= 0:
             raise ValueError(f'Number of cards drawn must be positive: {n}')
         elif n <= number_of_cards:
