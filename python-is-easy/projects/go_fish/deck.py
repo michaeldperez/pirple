@@ -22,6 +22,10 @@ class Deck:
     @property
     def cards(self) -> List[Card]:
         return self._cards
+    
+    @cards.setter
+    def cards(self, cards: List[Card]) -> None:
+        self._cards = cards
 
     def create(self) -> None:
         for suit in Deck.suits:
