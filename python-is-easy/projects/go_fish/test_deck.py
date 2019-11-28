@@ -26,6 +26,11 @@ class TestDeck(unittest.TestCase):
         self.deck.create()
         self.assertListEqual(self.deck.cards, self.new_deck)
     
+    def test_setter(self):
+        self.assertListEqual(self.deck.cards, [])
+        self.deck.cards = self.new_deck
+        self.assertListEqual(self.deck.cards, self.new_deck)
+    
     def test_shuffle(self):
         self.deck.create()
         self.deck.shuffle()
