@@ -1,4 +1,5 @@
 from typing import List
+from card import Card
 from deck import Deck
 
 class Dealer:
@@ -10,7 +11,7 @@ class Dealer:
         self.deck.create()
         self.deck.shuffle()
     
-    def deal_cards(self, number_of_cards: int) -> List[str]:
+    def deal_cards(self, number_of_cards: int) -> List[Card]:
         try:
             cards = self.deck.draw(number_of_cards)
             return cards
