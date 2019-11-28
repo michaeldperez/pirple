@@ -11,4 +11,10 @@ class Dealer:
         self.deck.shuffle()
     
     def deal_cards(self, number_of_cards: int) -> List[str]:
-        return self.deck.draw(number_of_cards)
+        try:
+            cards = self.deck.draw(number_of_cards)
+            return cards
+        except ValueError as ve_err:
+            print(str(ve_err))
+        except IndexError as idx_err:
+            print(str(idx_err))
