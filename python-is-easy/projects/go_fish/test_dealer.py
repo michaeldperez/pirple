@@ -36,11 +36,17 @@ class TestDealer(unittest.TestCase):
             all(isinstance(card, Card) for card in cards)
         )
         self.assertEqual(len(cards), 5)
+
     def test_negative_deal_cards(self):
-        pass
+        self.dealer.prepare_deck()
+        self.assertListEqual(self.dealer.deal_cards(-5), [])
 
     def test_too_many_deal_cards(self):
-        pass
+        self.dealer.prepare_deck()
+        cards = self.dealer.deal_cards(53)
+        for card in cards:
+            print(card)
+        self.assertListEqual(cards, [])
 
 
 if __name__ == '__main__':
