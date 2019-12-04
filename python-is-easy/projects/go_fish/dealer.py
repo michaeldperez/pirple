@@ -17,5 +17,7 @@ class Dealer:
             return cards
         except ValueError as ve_err:
             print(str(ve_err))
+            return []
         except IndexError as idx_err:
             print(str(idx_err))
+            return []
