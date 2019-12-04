@@ -26,6 +26,11 @@ class TestDeck(unittest.TestCase):
         self.deck.create()
         self.assertListEqual(self.deck.cards, self.new_deck)
     
+    def test_create_once(self):
+        self.deck.create()
+        self.deck.create()
+        self.assertEqual(len(self.deck.cards), 52)
+    
     def test_setter(self):
         self.assertListEqual(self.deck.cards, [])
         self.deck.cards = self.new_deck
