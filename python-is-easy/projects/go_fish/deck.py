@@ -28,9 +28,10 @@ class Deck:
         self._cards = cards
 
     def create(self) -> None:
-        for suit in Deck.suits:
-            for rank in Deck.ranks:
-                self.cards.append(Card(rank, suit))
+        if len(self.cards) == 0:
+            for suit in Deck.suits:
+                for rank in Deck.ranks:
+                    self.cards.append(Card(rank, suit))
     
     def shuffle(self) -> None:
         random.shuffle(self.cards)
@@ -39,7 +40,7 @@ class Deck:
         number_of_cards: int = len(self.cards)
         if n <= 0:
             raise ValueError(f'Number of cards drawn must be positive: {n}')
-        elif n <= number_of_cards:
+        elif n <= number_of_cards and number_of_cards <= 52:
            return [self.cards.pop() for _ in range(0,n)]
         else:
             raise IndexError(f'{n} is greater than the current number of cards: {number_of_cards}')
